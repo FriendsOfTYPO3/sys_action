@@ -9,7 +9,7 @@ own extension, receiving its own public repository.
 
 ## Installation
 The latest version can be installed via TER (http://typo3.org) or via composer
-by adding ''composer require friendsoftypo3/sys_action'' in a TYPO3 v10.0+ installation.
+by adding ''composer require friendsoftypo3/sys-action'' in a TYPO3 v10.0+ installation.
 
 ## Current state
 The extension has been part of TYPO3 Core for a very long time but never

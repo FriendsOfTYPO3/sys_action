@@ -1,6 +1,6 @@
 {
-	"name": "typo3/cms-sys-action",
-	"type": "typo3-cms-framework",
+	"name": "friendsoftypo3/sys-action",
+	"type": "typo3-cms-extension",
 	"description": "Actions are 'programmed' admin tasks which can be performed by selected regular users from the Task Center. An action could be creation of backend users, fixed SQL SELECT queries, listing of records, direct edit access to selected records etc.",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0-or-later"],
@@ -13,14 +13,15 @@
 		"sort-packages": true
 	},
 	"require": {
-		"typo3/cms-core": "10.0.*@dev",
-		"typo3/cms-taskcenter": "10.0.*@dev"
+		"typo3/cms-core": "10.*.*@dev",
+		"friendsoftypo3/taskcenter": "10.*.*@dev"
 	},
 	"conflict": {
 		"typo3/cms": "*"
 	},
 	"replace": {
-		"sys_action": "*"
+		"sys_action": "*",
+		"typo3/cms-sys-action": "*"
 	},
 	"extra": {
 		"branch-alias": {
