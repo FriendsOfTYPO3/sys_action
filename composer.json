@@ -13,14 +13,13 @@
 		"sort-packages": true
 	},
 	"require": {
-		"typo3/cms-core": "10.*.*@dev",
-		"friendsoftypo3/taskcenter": "10.*.*@dev"
+		"typo3/cms-core": "^10.0",
+		"friendsoftypo3/taskcenter": "^10.0"
 	},
 	"conflict": {
 		"typo3/cms": "*"
 	},
 	"replace": {
-		"sys_action": "*",
 		"typo3/cms-sys-action": "*"
 	},
 	"extra": {
