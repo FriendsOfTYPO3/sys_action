@@ -82,7 +82,8 @@ return [
                 'size' => 10,
                 'minitems' => 0,
                 'maxitems' => 200,
-                'autoSizeMax' => 10
+                'autoSizeMax' => 10,
+                'default' => 0,
             ]
         ],
         't1_userprefix' => [
@@ -129,6 +130,7 @@ return [
                 'size' => 1,
                 'maxitems' => 1,
                 'minitems' => 1,
+                'default' => 0,
             ]
         ],
         't3_listPid' => [
@@ -140,6 +142,7 @@ return [
                 'size' => 1,
                 'maxitems' => 1,
                 'minitems' => 1,
+                'default' => 0,
             ]
         ],
         't3_tables' => [
