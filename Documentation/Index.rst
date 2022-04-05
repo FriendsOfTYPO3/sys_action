@@ -1,59 +1,58 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: /Includes.txt
 
-.. include:: Includes.txt
-
-
-.. _start:
-
-==============
-System Actions
-==============
+===================
+Task Center Actions
+===================
 
 :Extension key:
-      sys_actions
+   sys_action
+
+:Package name:
+   friendsoftypo3/sys-action
 
 :Version:
-      |release|
+   |release|
 
 :Language:
-      en
-
-:Description:
-      System-wide actions for the TYPO3 Backend.
-
-:Keywords:
-      system actions
-
-:Copyright:
-      2000-2019
+   en
 
 :Author:
-      TYPO3 CMS Core Development Team
+   TYPO3 Core Team & Contributors
 
 :License:
-      Open Content License available from `www.opencontent.org/opl.shtml
-      <http://www.opencontent.org/opl.shtml>`_
+   This document is published under the
+   `Open Content License <https://www.openhub.net/licenses/opl>`__.
 
 :Rendered:
-      |today|
+   |today|
 
-The content of this document is related to TYPO3,
+----
 
-a GNU/GPL CMS/Framework available from `www.typo3.org
-<http://www.typo3.org/>`_
+This extension allows to run some TYPO3 backend administration tasks like the
+creation of new backend users as a non-admin user if properly set up. It hooks
+into the `taskcenter <https://extensions.typo3.org/extension/taskcenter/>`__
+extension for the GUI part.
 
+The functionality was part of the TYPO3 Core until TYPO3 v10.0, and moved into
+its own extension, receiving its own public repository.
 
-**Table of Contents**
+----
+
+**Table of Contents:**
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :titlesonly:
-   :glob:
 
    Introduction/Index
+   Installation/Index
    UsersManual/Index
-   Targets
+   Contribution/Index
 
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+
+   Sitemap
+   genindex

@@ -38,8 +38,17 @@ make the life of editors easier. These types of actions exist:
 Screenshots
 ^^^^^^^^^^^
 
-.. figure:: ../Images/RecordListAction.gif
+.. figure:: /Images/RecordListAction.gif
    :alt: Example screenshot for task center
 
    A typical view of the Task Center with system actions: with an action for rendering a record list
 
+
+.. _current-state:
+
+Current state
+^^^^^^^^^^^^^
+
+The extension has been part of TYPO3 Core for a very long time but never
+received much love. It may become more healthy if maintained as third party
+extension and has been extracted for this reason.

@@ -1,32 +1,20 @@
-# TYPO3 Extension "sys_action"
+[![Latest Stable Version](https://poser.pugx.org/friendsoftypo3/sys-action/v/stable.svg)](https://extensions.typo3.org/extension/sys_action/)
+[![TYPO3](https://img.shields.io/badge/TYPO3-10-orange.svg?style=flat-square)](https://get.typo3.org/version/10)
+[![Total Downloads](https://poser.pugx.org/friendsoftypo3/sys-action/d/total.svg)](https://packagist.org/packages/friendsoftypo3/sys-action)
+[![Monthly Downloads](https://poser.pugx.org/friendsoftypo3/sys-action/d/monthly)](https://packagist.org/packages/friendsoftypo3/sys-action)
 
-This TYPO3 allows to run some TYPO3 Backend admin tasks like creation of new
-Backend users as a non-admin user if properly set up. It hooks into
-extension "taskcenter" for the GUI part.
+# TYPO3 extension `sys_action`
 
-The functionality was part of the TYPO3 Core until TYPO3 v10.0, and moved into its
-own extension, receiving its own public repository.
+This extension allows to run some TYPO3 backend administration tasks like the
+creation of new backend users as a non-admin user if properly set up. It hooks
+into the [taskcenter](https://extensions.typo3.org/extension/taskcenter/)
+extension for the GUI part.
 
-## Installation
-The latest version can be installed via TER (http://typo3.org) or via composer
-by adding ''composer require friendsoftypo3/sys-action'' in a TYPO3 v10.0+ installation.
+The functionality was part of the TYPO3 Core until TYPO3 v10.0, and moved into
+its own extension, receiving its own public repository.
 
-## Current state
-The extension has been part of TYPO3 Core for a very long time but never
-received much love. It may become more healthy if maintained as third party
-extension and has been extracted for this reason.
-
-## Contribution
-Feel free to submit any pull request, or add documentation, tests, as you please.
-We will publish a new version every once in a while, depending on the amount of changes
-and pull requests submitted.
-
-### License
-The extension is published under GPL v2+, all included third-party libraries are
-published under their respective licenses.
-
-### Authors
-Many contributors have been working on this area while this functionality was part of
-the TYPO3 Core. This package is now maintained by a loose group of TYPO3 enthusiasts inside
-the TYPO3 Community. Feel free to contact Benni Mack (benni.mack@typo3.org) for any questions
-regarding "sys_action".
+|                  | URL                                                            |
+|------------------|----------------------------------------------------------------|
+| **Repository:**  | https://github.com/FriendsOfTYPO3/sys_action                   |
+| **Read online:** | https://docs.typo3.org/p/friendsoftypo3/sys-action/main/en-us/ |
+| **TER:**         | https://extensions.typo3.org/extension/sys_action/             |

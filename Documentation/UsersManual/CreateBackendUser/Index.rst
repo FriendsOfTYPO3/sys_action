@@ -16,7 +16,7 @@ By using this action type any assigned backend user can create, update
 and delete backend users. The functionality is limited by defining a
 specific user as template record.
 
-.. figure:: ../../Images/CreateBackendUserAction.gif
+.. figure:: /Images/CreateBackendUserAction.gif
    :alt: Create Backend User action
 
    Using the action to create a backend user
