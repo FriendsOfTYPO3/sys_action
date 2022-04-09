@@ -2,7 +2,12 @@
 	"name": "friendsoftypo3/sys-action",
 	"type": "typo3-cms-extension",
 	"description": "Actions are 'programmed' admin tasks which can be performed by selected regular users from the Task Center. An action could be creation of backend users, fixed SQL SELECT queries, listing of records, direct edit access to selected records etc.",
-	"homepage": "https://typo3.org",
+	"homepage": "https://extensions.typo3.org/extension/sys_action/",
+	"support": {
+		"docs": "https://docs.typo3.org/p/friendsoftypo3/sys-action/main/en-us/",
+		"issues": "https://github.com/FriendsOfTYPO3/sys_action/issues",
+		"source": "https://github.com/FriendsOfTYPO3/sys_action"
+	},
 	"license": ["GPL-2.0-or-later"],
 	"authors": [{
 		"name": "TYPO3 Core Team",
