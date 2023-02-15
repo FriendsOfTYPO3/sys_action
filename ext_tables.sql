@@ -28,3 +28,6 @@ CREATE TABLE sys_action_asgr_mm (
   KEY uid_foreign (uid_foreign)
 );
 
+CREATE TABLE be_users (
+  createdByAction int(11) DEFAULT '0' NOT NULL
+);

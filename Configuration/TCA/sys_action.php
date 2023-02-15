@@ -1,4 +1,5 @@
 <?php
+
 return [
     'ctrl' => [
         'label' => 'title',
@@ -11,18 +12,14 @@ return [
         'cruser_id' => 'cruser_id',
         'adminOnly' => true,
         'rootLevel' => -1,
-        'setToDefaultOnCopy' => 'assign_to_groups',
         'enablecolumns' => [
-            'disabled' => 'hidden'
+            'disabled' => 'hidden',
         ],
         'typeicon_classes' => [
-            'default' => 'mimetypes-x-sys_action'
+            'default' => 'mimetypes-x-sys_action',
         ],
         'type' => 'type',
-        'searchFields' => 'title,description'
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,title,type,description,assign_to_groups'
+        'searchFields' => 'title,description',
     ],
     'columns' => [
         'title' => [
@@ -31,16 +28,16 @@ return [
                 'type' => 'input',
                 'size' => 25,
                 'max' => 255,
-                'eval' => 'trim,required'
-            ]
+                'eval' => 'trim,required',
+            ],
         ],
         'description' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.description',
             'config' => [
                 'type' => 'text',
                 'rows' => 10,
-                'cols' => 48
-            ]
+                'cols' => 48,
+            ],
         ],
         'hidden' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.enabled',
@@ -51,10 +48,10 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
         'type' => [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.type',
@@ -67,9 +64,9 @@ return [
                     ['LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.type.2', '2'],
                     ['LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.type.3', '3'],
                     ['LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.type.4', '4'],
-                    ['LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.type.5', '5']
-                ]
-            ]
+                    ['LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.type.5', '5'],
+                ],
+            ],
         ],
         'assign_to_groups' => [
             'label' => 'LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.assign_to_groups',
@@ -84,7 +81,7 @@ return [
                 'maxitems' => 200,
                 'autoSizeMax' => 10,
                 'default' => 0,
-            ]
+            ],
         ],
         't1_userprefix' => [
             'label' => 'LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.t1_userprefix',
@@ -92,8 +89,8 @@ return [
                 'type' => 'input',
                 'size' => 25,
                 'max' => 10,
-                'eval' => 'trim'
-            ]
+                'eval' => 'trim',
+            ],
         ],
         't1_allowed_groups' => [
             'label' => 'LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.t1_allowed_groups',
@@ -104,8 +101,8 @@ return [
                 'foreign_table_where' => 'ORDER BY be_groups.title',
                 'size' => 10,
                 'maxitems' => 20,
-                'autoSizeMax' => 10
-            ]
+                'autoSizeMax' => 10,
+            ],
         ],
         't1_create_user_dir' => [
             'exclude' => 1,
@@ -117,33 +114,31 @@ return [
                     [
                         0 => '',
                         1 => '',
-                    ]
+                    ],
                 ],
-            ]
+            ],
         ],
         't1_copy_of_user' => [
             'label' => 'LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.t1_copy_of_user',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'be_users',
                 'size' => 1,
                 'maxitems' => 1,
                 'minitems' => 1,
                 'default' => 0,
-            ]
+            ],
         ],
         't3_listPid' => [
             'label' => 'LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.t3_listPid',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'pages',
                 'size' => 1,
                 'maxitems' => 1,
                 'minitems' => 1,
                 'default' => 0,
-            ]
+            ],
         ],
         't3_tables' => [
             'label' => 'LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.t3_tables',
@@ -152,22 +147,21 @@ return [
                 'renderType' => 'selectSingle',
                 'special' => 'tables',
                 'items' => [
-                    ['', '']
-                ]
-            ]
+                    ['', ''],
+                ],
+            ],
         ],
         't4_recordsToEdit' => [
             'label' => 'LLL:EXT:sys_action/Resources/Private/Language/locallang_tca.xlf:sys_action.t4_recordsToEdit',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => '*',
                 'prepend_tname' => true,
                 'size' => 5,
                 'maxitems' => 50,
                 'minitems' => 1,
-            ]
-        ]
+            ],
+        ],
     ],
     'types' => [
         '0' => ['showitem' => '
@@ -224,6 +218,6 @@ return [
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
                 description,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
-        ']
-    ]
+        '],
+    ],
 ];
