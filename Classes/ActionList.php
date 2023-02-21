@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace TYPO3\CMS\SysAction;
 
 /*
@@ -13,14 +16,15 @@ namespace TYPO3\CMS\SysAction;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
 
 /**
  * Class for the list rendering of Web>Task Center module
  * @internal
  */
-class ActionList extends \TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList
+class ActionList extends DatabaseRecordList
 {
     /**
      * Creates the URL to this script, including all relevant GPvars
@@ -45,13 +49,10 @@ class ActionList extends \TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList
         } else {
             $urlParameters['table'] = $table;
         }
-        if ($this->thumbs) {
-            $urlParameters['imagemode'] = $this->thumbs;
-        }
         if ($this->returnUrl) {
             $urlParameters['returnUrl'] = $this->returnUrl;
         }
-        if ($this->searchString) {
+        if ((!$excludeList || !GeneralUtility::inList($excludeList, 'search_field')) && $this->searchString) {
             $urlParameters['search_field'] = $this->searchString;
         }
         if ($this->searchLevels) {
@@ -60,23 +61,23 @@ class ActionList extends \TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList
         if ($this->showLimit) {
             $urlParameters['showLimit'] = $this->showLimit;
         }
-        if ($this->firstElementNumber) {
-            $urlParameters['pointer'] = $this->firstElementNumber;
+        if ((!$excludeList || !GeneralUtility::inList($excludeList, 'pointer')) && $this->page) {
+            $urlParameters['pointer'] = $this->page;
         }
-        if ((!$excludeList || !\TYPO3\CMS\Core\Utility\GeneralUtility::inList($excludeList, 'sortField')) && $this->sortField) {
+        if ((!$excludeList || !GeneralUtility::inList($excludeList, 'sortField')) && $this->sortField) {
             $urlParameters['sortField'] = $this->sortField;
         }
-        if ((!$excludeList || !\TYPO3\CMS\Core\Utility\GeneralUtility::inList($excludeList, 'sortRev')) && $this->sortRev) {
+        if ((!$excludeList || !GeneralUtility::inList($excludeList, 'sortRev')) && $this->sortRev) {
             $urlParameters['sortRev'] = $this->sortRev;
         }
-        if (\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('SET')) {
-            $urlParameters['SET'] = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('SET');
+        if (GeneralUtility::_GP('SET')) {
+            $urlParameters['SET'] = GeneralUtility::_GP('SET');
         }
-        if (\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('show')) {
-            $urlParameters['show'] = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('show');
+        if (GeneralUtility::_GP('show')) {
+            $urlParameters['show'] = (int)GeneralUtility::_GP('show');
         }
-        /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
-        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
+        /** @var UriBuilder $uriBuilder */
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         return (string)$uriBuilder->buildUriFromRoute('user_task', $urlParameters);
     }
 }

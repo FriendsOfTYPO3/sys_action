@@ -18,8 +18,8 @@
 		"sort-packages": true
 	},
 	"require": {
-		"typo3/cms-core": "^10.0",
-		"friendsoftypo3/taskcenter": "^10.0"
+		"typo3/cms-core": "^11.5.23",
+		"friendsoftypo3/taskcenter": "^11.0 || @dev"
 	},
 	"conflict": {
 		"typo3/cms": "*"
@@ -28,9 +28,6 @@
 		"typo3/cms-sys-action": "*"
 	},
 	"extra": {
-		"branch-alias": {
-			"dev-master": "10.0.x-dev"
-		},
 		"typo3/cms": {
 			"extension-key": "sys_action"
 		}

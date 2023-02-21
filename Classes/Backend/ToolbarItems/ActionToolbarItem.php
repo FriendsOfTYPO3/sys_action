@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace TYPO3\CMS\SysAction\Backend\ToolbarItems;
 
 /*
@@ -13,8 +16,9 @@ namespace TYPO3\CMS\SysAction\Backend\ToolbarItems;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
@@ -69,7 +73,7 @@ class ActionToolbarItem implements ToolbarItemInterface
             ->removeAll()
             ->add(GeneralUtility::makeInstance(HiddenRestriction::class))
             ->add(GeneralUtility::makeInstance(RootLevelRestriction::class, [
-                'sys_action'
+                'sys_action',
             ]));
 
         $queryBuilder
@@ -81,7 +85,11 @@ class ActionToolbarItem implements ToolbarItemInterface
         }
 
         if (!$backendUser->isAdmin()) {
-            $groupList = $backendUser->groupList ?: '0';
+            if (empty($backendUser->userGroupsUID)) {
+                $groupList = 0;
+            } else {
+                $groupList = implode(',', $backendUser->userGroupsUID);
+            }
 
             $queryBuilder
                 ->join(
@@ -114,10 +122,10 @@ class ActionToolbarItem implements ToolbarItemInterface
                 ->groupBy('sys_action.uid');
         }
 
-        /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
-        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
+        /** @var UriBuilder $uriBuilder */
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $result = $queryBuilder->execute();
-        while ($actionRow = $result->fetch()) {
+        while ($actionRow = $result->fetchAssociative()) {
             $actionRow['link'] = sprintf(
                 '%s&SET[mode]=tasks&SET[function]=sys_action.%s&show=%u',
                 (string)$uriBuilder->buildUriFromRoute('user_task'),
@@ -174,7 +182,7 @@ class ActionToolbarItem implements ToolbarItemInterface
     /**
      * Returns the current BE user.
      *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     * @return BackendUserAuthentication
      */
     protected function getBackendUser()
     {
@@ -193,7 +201,7 @@ class ActionToolbarItem implements ToolbarItemInterface
         $view->setLayoutRootPaths(['EXT:sys_action/Resources/Private/Layouts']);
         $view->setPartialRootPaths([
             'EXT:backend/Resources/Private/Partials/ToolbarItems',
-            'EXT:sys_action/Resources/Private/Partials'
+            'EXT:sys_action/Resources/Private/Partials',
         ]);
         $view->setTemplateRootPaths(['EXT:sys_action/Resources/Private/Templates/ToolbarItems']);
         $view->setTemplate($filename);
