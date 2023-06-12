@@ -352,7 +352,7 @@ class ActionTask implements TaskInterface
         }
         $vars = GeneralUtility::_POST('data');
         $key = 'NEW';
-        if ($vars['sent'] == 1) {
+        if ((int)($vars['sent'] ?? 0) === 1) {
             $errors = [];
             // Basic error checks
             if (!empty($vars['email']) && !GeneralUtility::validEmail($vars['email'])) {
@@ -412,7 +412,7 @@ class ActionTask implements TaskInterface
                             <h4 class="form-section-headline">' . htmlspecialchars($this->getLanguageService()->getLL('action_t1_legend_generalFields')) . '</h4>
                             <div class="form-group">
                                 <label for="field_disable">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.disable')) . '</label>
-                                <input type="checkbox" id="field_disable" name="data[disable]" value="1" class="checkbox" ' . ($vars['disable'] == 1 ? ' checked="checked" ' : '') . ' />
+                                <input type="checkbox" id="field_disable" name="data[disable]" value="1" class="checkbox" ' . ((int)($vars['disable'] ?? 0) === 1 ? ' checked="checked" ' : '') . ' />
                             </div>
                             <div class="form-group">
                                 <label for="field_realname">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.name')) . '</label>
@@ -577,7 +577,7 @@ class ActionTask implements TaskInterface
     protected function saveNewBackendUser($record, $vars)
     {
         // Check if the usergroup is allowed
-        $vars['usergroup'] = $this->fixUserGroup($vars['usergroup'], $record);
+        $vars['usergroup'] = $this->fixUserGroup($vars['usergroup'] ?? [], $record);
         $key = $vars['key'];
         $vars['password'] = trim($vars['password']);
         // Check if md5 is used as password encryption
@@ -595,10 +595,13 @@ class ActionTask implements TaskInterface
                 $data['be_users'][$key]['password'] = $vars['password'];
                 $data['be_users'][$key]['realName'] = $vars['realName'];
                 $data['be_users'][$key]['email'] = $vars['email'];
-                $data['be_users'][$key]['disable'] = (int)$vars['disable'];
+                $data['be_users'][$key]['disable'] = (int)($vars['disable'] ?? 0);
                 $data['be_users'][$key]['admin'] = 0;
-                $data['be_users'][$key]['usergroup'] = $vars['usergroup'];
+                $data['be_users'][$key]['usergroup'] = $vars['usergroup'] ?? '';
                 $data['be_users'][$key]['createdByAction'] = $record['uid'];
+
+                // UID column must be ignored
+                unset($data['be_users'][$key]['uid']);
             }
         } else {
             // Check ownership
@@ -722,7 +725,11 @@ class ActionTask implements TaskInterface
         foreach ($grList as $group) {
             $checkGroup = BackendUtility::getRecord('be_groups', $group);
             if (is_array($checkGroup)) {
-                $selected = GeneralUtility::inList($vars['usergroup'], $checkGroup['uid']) ? ' selected="selected" ' : '';
+                if (is_array($vars['usergroup'])) {
+                    $vars['usergroup'] = implode(',', $vars['usergroup']);
+                }
+
+                $selected = GeneralUtility::inList($vars['usergroup'] ?? '', $checkGroup['uid']) ? ' selected="selected" ' : '';
                 $content .= '<option ' . $selected . 'value="' . (int)$checkGroup['uid'] . '">' . htmlspecialchars($checkGroup['title']) . '</option>';
             }
         }
