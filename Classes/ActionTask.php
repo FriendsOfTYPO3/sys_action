@@ -725,7 +725,7 @@ class ActionTask implements TaskInterface
         foreach ($grList as $group) {
             $checkGroup = BackendUtility::getRecord('be_groups', $group);
             if (is_array($checkGroup)) {
-                if (is_array($vars['usergroup'])) {
+                if (isset($vars['usergroup']) && is_array($vars['usergroup'])) {
                     $vars['usergroup'] = implode(',', $vars['usergroup']);
                 }
 
