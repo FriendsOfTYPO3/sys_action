@@ -20,3 +20,7 @@ if (!defined('TYPO3')) {
         ],
     ]
 );
+
+// We set this configuration so the disable field is not added to "excludedTablesAndFields" in DataHandler::start
+// Otherwise, a non-admin user couldn't disable/enable a user through this action
+$GLOBALS['TCA']['be_users']['columns']['disable']['exclude'] = 0;

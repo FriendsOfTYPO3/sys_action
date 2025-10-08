@@ -34,6 +34,7 @@ use TYPO3\CMS\Core\Http\PropagateResponseException;
 use TYPO3\CMS\Core\Http\RedirectResponse;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
@@ -268,7 +269,7 @@ class ActionTask implements TaskInterface
                 );
 
                 $title = $this->getLanguageService()->sL('LLL:EXT:sys_action/Resources/Private/Language/locallang.xlf:edit-sys_action');
-                $icon = $this->iconFactory->getIcon('actions-open', Icon::SIZE_SMALL)->render();
+                $icon = $this->iconFactory->getIcon('actions-open', IconSize::SMALL)->render();
                 $editActionLink = '<a class="btn btn-default btn-sm" href="' . htmlspecialchars($link) . '" title="' . htmlspecialchars($title) . '">';
                 $editActionLink .= $icon . ' ' . htmlspecialchars($title) . '</a>';
             }
@@ -328,7 +329,7 @@ class ActionTask implements TaskInterface
             $title = $this->getLanguageService()->sL('LLL:EXT:sys_action/Resources/Private/Language/locallang.xlf:new-sys_action');
             $content .= '<p>' .
                 '<a class="btn btn-default" href="' . htmlspecialchars($link) . '" title="' . htmlspecialchars($title) . '">' .
-                $this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL)->render() . ' ' . htmlspecialchars($title) .
+                $this->iconFactory->getIcon('actions-add', IconSize::SMALL)->render() . ' ' . htmlspecialchars($title) .
                 '</a></p>';
         }
         return $content;
@@ -342,6 +343,8 @@ class ActionTask implements TaskInterface
      */
     protected function viewNewBackendUser($record)
     {
+        $this->pageRenderer->loadJavaScriptModule('@friendsoftypo3/sys-action/action-task.js');
+
         $content = '';
         $beRec = BackendUtility::getRecord('be_users', (int)$record['t1_copy_of_user']);
         // A record is need which is used as copy for the new user
@@ -452,7 +455,7 @@ class ActionTask implements TaskInterface
                             <h4 class="form-section-headline">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:sys_action/Resources/Private/Language/locallang.xlf:action_t1_legend_configuration')) . '</h4>
                             <div class="form-group">
                                 <label for="field_usergroup">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:be_users.usergroup')) . '</label>
-                                <select id="field_usergroup" class="form-control" name="data[usergroup][]" multiple="multiple">
+                                <select id="field_usergroup" class="form-select" style="height:250px" name="data[usergroup][]" multiple="multiple">
                                     ' . $this->getUsergroups($record, $vars) . '
                                 </select>
                             </div>
@@ -538,7 +541,7 @@ class ActionTask implements TaskInterface
 
         // Render the user records
         while ($row = $res->fetchAssociative()) {
-            $icon = '<span title="' . htmlspecialchars('uid=' . $row['uid']) . '">' . $this->iconFactory->getIconForRecord('be_users', $row, Icon::SIZE_SMALL)->render() . '</span>';
+            $icon = '<span title="' . htmlspecialchars('uid=' . $row['uid']) . '">' . $this->iconFactory->getIconForRecord('be_users', $row, IconSize::SMALL)->render() . '</span>';
             $line = $icon . $this->action_linkUserName($row['username'], $row['realName'], $action['uid'], $row['uid']);
             // Selected user
             if ($row['uid'] == $selectedUser) {
@@ -579,7 +582,7 @@ class ActionTask implements TaskInterface
         // Link to delete the user record
         $link .= '
 				<a href="' . htmlspecialchars($href . '&delete=1') . '" class="t3js-confirm-trigger" data-title="' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:sys_action/Resources/Private/Language/locallang.xlf:lDelete_warning_title')) . '" data-message="' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:sys_action/Resources/Private/Language/locallang.xlf:lDelete_warning')) . '">'
-                    . $this->iconFactory->getIcon('actions-edit-delete', Icon::SIZE_SMALL)->render() .
+                    . $this->iconFactory->getIcon('actions-edit-delete', IconSize::SMALL)->render() .
                 '</a>';
         return $link;
     }
@@ -815,7 +818,7 @@ class ActionTask implements TaskInterface
                 'description' => BackendUtility::getRecordTitle($el['table'], $dbAnalysis->results[$el['table']][$el['id']]),
                 'descriptionHtml' => $description,
                 'link' => $link,
-                'icon' => '<span title="' . htmlspecialchars($path) . '">' . $this->iconFactory->getIconForRecord($el['table'], $dbAnalysis->results[$el['table']][$el['id']], Icon::SIZE_SMALL)->render() . '</span>',
+                'icon' => '<span title="' . htmlspecialchars($path) . '">' . $this->iconFactory->getIconForRecord($el['table'], $dbAnalysis->results[$el['table']][$el['id']], IconSize::SMALL)->render() . '</span>',
             ];
         }
         // Render the record list
